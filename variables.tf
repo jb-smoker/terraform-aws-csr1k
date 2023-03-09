@@ -85,7 +85,7 @@ variable "egress_cidr_blocks" {
 
 locals {
   csr_bootstrap   = var.custom_bootstrap ? var.bootstrap_data : data.template_file.running_config.rendered
-  ssh_cidr_blocks = var.ssh_allow_ip != null ? var.ssh_allow_ip : ["${chomp(data.http.my_public_ip.body)}/32"]
+  ssh_cidr_blocks = var.ssh_allow_ip != null ? var.ssh_allow_ip : ["${chomp(data.http.my_public_ip.response_body)}/32"]
 
   ingress_ports = {
     "Allow SSH TCP 22" = {
