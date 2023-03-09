@@ -1,7 +1,7 @@
 variable "csr_ami_byol_ami" {
   description = "Cisco Cloud Services Router (CSR) 1000V - BYOL for Maximum Performance"
   type        = string
-  default     = "cisco_CSR-17.03.05-BYOL-624f5bb1-7f8e-4f7c-ad2c-03ae1cd1c2d3"
+  default     = "cisco_CSR-17.03.06-BYOL-624f5bb1-7f8e-4f7c-ad2c-03ae1cd1c2d3"
 }
 
 variable "csr_ami_sec_ami" {
@@ -27,7 +27,7 @@ variable "admin_password" {
 }
 
 variable "csr_hostname" {
-  description = "Admin password for CSR"
+  description = "Csr hostname"
   type        = string
   default     = "csr1k"
 }
