@@ -7,7 +7,7 @@ variable "csr_ami_byol_ami" {
 variable "csr_ami_sec_ami" {
   description = "Cisco Cloud Services Router (CSR) 1000V - Security Pkg. Max Performance"
   type        = string
-  default     = "cisco_CSR-17.03.05-SEC-dbfcb230-402e-49cc-857f-dacb4db08d34 "
+  default     = "cisco_CSR-17.03.06-SEC-dbfcb230-402e-49cc-857f-dacb4db08d34"
 }
 
 variable "custom_bootstrap" {
