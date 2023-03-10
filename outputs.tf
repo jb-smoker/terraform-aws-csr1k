@@ -8,10 +8,10 @@ output "csr_gi2" {
   value       = aws_network_interface.csr_gi2
 }
 
-output "csr_eip" {
-  description = "CSR eip with all of its attributes."
-  value       = aws_eip.this
-}
+# output "csr_eip" {
+#   description = "CSR eip with all of its attributes."
+#   value       = aws_eip.this
+# }
 
 output "csr_instance" {
   description = "The created CSR instance as an object with all of its attributes."
