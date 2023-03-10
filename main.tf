@@ -148,8 +148,9 @@ resource "aws_instance" "this" {
     Name = var.csr_hostname
   }
 
+  depends_on = [aws_eip.this]
+  
   lifecycle {
     ignore_changes = [ami]
-    depends_on     = [aws_eip.this]
   }
 }
