@@ -116,21 +116,23 @@ resource "aws_network_interface" "csr_gi2" {
   }
 }
 
-# Allocate EIP for CSR Gi1
-resource "aws_eip" "this" {
-  vpc               = true
-  network_interface = aws_network_interface.csr_gi1.id
-
-  tags = {
-    "Name" = "CSR-Gi1-EIP@${var.csr_hostname}"
-  }
-}
+# # Allocate EIP for CSR Gi1
+# resource "aws_eip" "this" {
+#   vpc               = true
+#   network_interface = aws_network_interface.csr_gi1.id
+#
+#   tags = {
+#     "Name" = "CSR-Gi1-EIP@${var.csr_hostname}"
+#   }
+# }
 
 # Create CSR EC2 instance
 resource "aws_instance" "this" {
   ami           = data.aws_ami.this.id
   instance_type = var.instance_type
   key_name      = var.key_name
+
+  associate_public_ip_address = true
 
   network_interface {
     network_interface_id = aws_network_interface.csr_gi1.id
