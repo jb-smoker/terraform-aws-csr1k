@@ -98,6 +98,16 @@ locals {
       protocol    = "udp",
       cidr_blocks = var.ingress_cidr_blocks,
     }
+    "Allow BGP 179" = {
+      port        = 179,
+      protocol    = "udp",
+      cidr_blocks = ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"],
+    }
+    "Allow ICMP" = {
+      port        = -1,
+      protocol    = "icmp",
+      cidr_blocks = ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"],
+    }
     "Allow ESP UDP 500" = {
       port        = 500,
       protocol    = "udp",
