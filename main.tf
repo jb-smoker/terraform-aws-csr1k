@@ -5,17 +5,6 @@ data "http" "my_public_ip" {
   url = "http://ipv4.icanhazip.com"
 }
 
-# CSR AMI
-data "aws_ami" "this" {
-  owners      = ["aws-marketplace"]
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = var.csr_ami == "BYOL" ? [var.csr_ami_byol_ami] : [var.csr_ami_sec_ami]
-  }
-}
-
 # Running config template
 data "template_file" "running_config" {
   template = file("${path.module}/running-config.tpl")
@@ -118,7 +107,7 @@ resource "aws_network_interface" "csr_gi2" {
 
 # Allocate EIP for CSR Gi1
 resource "aws_eip" "this" {
-  vpc               = true
+  domain            = "vpc"
   network_interface = aws_network_interface.csr_gi1.id
 
   tags = {
@@ -128,7 +117,7 @@ resource "aws_eip" "this" {
 
 # Create CSR EC2 instance
 resource "aws_instance" "this" {
-  ami           = data.aws_ami.this.id
+  ami           = var.csr_ami_byol_ami_id
   instance_type = var.instance_type
   key_name      = var.key_name
 
@@ -149,7 +138,7 @@ resource "aws_instance" "this" {
   }
 
   depends_on = [aws_eip.this]
-  
+
   lifecycle {
     ignore_changes = [ami]
   }
